@@ -19,13 +19,14 @@ class PhotoModel(models.Model):
         auto_now_add=True,
         verbose_name='Дата-время создания'
     )
-    author = models.CharField(max_length=50, null=True, verbose_name='Автор')
+    author = models.ForeignKey(
+        verbose_name='Автор',
+        to=get_user_model(),
+        related_name='photos',
+        null=False,
+        blank=False,
+        on_delete=models.CASCADE,
+        default=1
+    )
 
-# ForeignKey(
-#         verbose_name='Автор',
-#         to=get_user_model(),
-#         related_name='photos',
-#         null=False,
-#         blank=False,
-#         on_delete=models.CASCADE
-#     )
+

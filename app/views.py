@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
@@ -25,7 +27,7 @@ class PhotoDetailView(DetailView):
         return super().get_context_data(**kwargs)
 
 
-class PhotoUpdateView(UpdateView):
+class PhotoUpdateView(UserPassesTestMixin, UpdateView):
     template_name = 'update_photo.html'
     form_class = PhotoForm
     model = PhotoModel
@@ -33,22 +35,32 @@ class PhotoUpdateView(UpdateView):
     def get_success_url(self):
         return reverse('photo_detail', kwargs={'pk': self.object.pk})
 
+    def test_func(self):
+        user = self.request.user
+        photo = self.get_object()
+        return user == photo.author or self.request.user.has_perm('change_photomodel')
 
-class PhotoDeleteView(DeleteView):
+
+class PhotoDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     template_name = 'delete_photo.html'
     model = PhotoModel
     context_object_name = 'photo'
     success_url = reverse_lazy('index')
 
+    def test_func(self):
+        user = self.request.user
+        post = self.get_object()
+        return user == post.author or self.request.user.has_perm('delete_photomodel')
 
-class AddPhotoView(CreateView):
+
+class AddPhotoView(LoginRequiredMixin, CreateView):
     model = PhotoModel
     fields = ['photo', 'description']
     template_name = 'add_photo.html'
 
     def form_valid(self, form):
         photo = form.save(commit=False)
-        photo.author = 'Test'
+        photo.author = self.request.user
         photo.save()
         return super().form_valid(form)
 

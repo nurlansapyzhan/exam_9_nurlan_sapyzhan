@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 {% block menu %}
+    {% if photomodel.perms.change_photomodel or request.user == photomodel.author %}
     <a class="nav-link" href="{% url 'update_photo' photomodel.pk %}">Update photo</a>
-    <a class="nav-link" href="{% url 'delete_photo' photomodel.pk %}">Delete photo</a>
+    {% endif %}
+    {% if photomodel.perms.delete_photomodel or request.user == photomodel.author %}
+        <a class="nav-link" href="{% url 'delete_photo' photomodel.pk %}">Delete photo</a>
+    {% endif %}
 {% endblock %}
 {% block content %}
     <div class="photo-detail">
