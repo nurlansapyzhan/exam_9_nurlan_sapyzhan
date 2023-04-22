@@ -6,6 +6,8 @@ from django.contrib import messages
 from accounts.forms import LoginForm, CustomUserCreationForm
 from django.shortcuts import redirect, get_object_or_404
 
+from app.models import PhotoModel
+
 
 class LoginView(TemplateView):
     template_name = 'login.html'
@@ -67,4 +69,5 @@ class ProfileView(LoginRequiredMixin, DetailView):
     context_object_name = 'user_obj'
 
     def get_context_data(self, **kwargs):
+        kwargs['photo'] = PhotoModel.objects.all()
         return super().get_context_data(**kwargs)

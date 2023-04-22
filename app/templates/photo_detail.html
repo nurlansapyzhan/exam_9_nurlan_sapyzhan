@@ -17,6 +17,10 @@
                     <h5 class="card-title">{{ photomodel.description }}</h5>
                     <p class="card-text">Author: {{ photomodel.author }}</p>
                     <p class="card-text">Created date: {{ photomodel.created_at }}</p>
+                    <h5>In favorites:</h5>
+                    {% for user in photomodel.favorite.all %}
+                        <p>{{ user }}</p>
+                    {% endfor %}
                 </div>
             </div>
         </div>

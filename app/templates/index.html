@@ -16,14 +16,47 @@
                          alt="product image">
                     <div class="card-body">
                         <h5 class="card-title">{{ photo.description }}</h5>
-                        <p class="card-text">Author: <a href="{% url 'profile' photo.author.pk %}">{{ photo.author }}</a></p>
+                        <p class="card-text">Author: <a
+                                href="{% url 'profile' photo.author.pk %}">{{ photo.author }}</a></p>
                         <p class="card-text">Created date: {{ photo.created_at }}</p>
                         <a href="{% url 'photo_detail' photo.id %}" class="btn btn-secondary">See more >>></a>
+                        <form action="{% url 'add_to_favorite' photo.id %}" method="post" class="mt-2">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary add_to_favorite_button"
+                                    id="favorite_button_{{ photo.id }}">
+                                Add to favorites
+                            </button>
+                        </form>
                     </div>
+                    <span id="data-element" data-id="{{ photo.id }}"></span>
                 </div>
             </div>
         {% empty %}
             <h4>No data</h4>
         {% endfor %}
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.add_to_favorite_button').click(function (event) {
+                event.preventDefault();
+                const photo = document.getElementById('data-element');
+                const photoId = photo.dataset.id;
+                let url = "api/favorites/add/" + photoId + "/";
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: {
+                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                    },
+                    success: function (data) {
+                        alert('success')
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("Error:", error)
+                    }
+                });
+            });
+        });
+    </script>
 {% endblock %}

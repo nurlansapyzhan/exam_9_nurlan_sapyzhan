@@ -10,6 +10,11 @@ class Account(AbstractUser):
         null=False,
         unique=True
     )
+    favorite_posts = models.ManyToManyField(
+        to='app.PhotoModel',
+        verbose_name='Favorite posts',
+        related_name='favorite'
+    )
 
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = []
@@ -17,5 +22,5 @@ class Account(AbstractUser):
     object = UserManager()
 
     class Meta:
-        verbose_name = 'Профиль'
-        verbose_name_plural = 'Профили'
+        verbose_name = 'Profile'
+        verbose_name_plural = 'Profiles'

@@ -29,4 +29,3 @@ class PhotoModel(models.Model):
         default=1
     )
 
-

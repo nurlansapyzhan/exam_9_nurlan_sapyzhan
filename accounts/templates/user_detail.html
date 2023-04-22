@@ -8,18 +8,17 @@
         </div>
     </div>
     <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
-{#        {% for review in reviews %}#}
-{#            <div class="card text-center me-2 mt-2" style="width: 18rem;">#}
-{#                <div class="card-body">#}
-{#                    <h5 class="card-title">Author: {{ review.author }}</h5>#}
-{#                    <p class="card-text">Product: {{ review.product.name }}</p>#}
-{#                    <p class="card-text">Review text: {{ review.text }}</p>#}
-{#                    <p class="card-text">Author email: {{ review.author.email }}</p>#}
-{#                    <h6>Rating: {{ review.rating }}</h6>#}
-{#                    <a href="{% url 'update_review' review.pk %}" class="btn btn-secondary">Update Review</a>#}
-{#                    <a href="{% url 'delete_review' review.pk %}" class="btn btn-secondary mt-3">Delete Review</a>#}
-{#                </div>#}
-{#            </div>#}
-{#        {% endfor %}#}
+        {% for photo in user_obj.favorite_posts.all %}
+            <div class="card h-100">
+                <img src="{{ photo.photo.url }}" class="card-img-top img-thumbnail product_image"
+                     alt="product image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ photo.description }}</h5>
+                    <p class="card-text">Author: <a
+                            href="{% url 'profile' user_obj.pk %}">{{ photo.author }}</a></p>
+                    <p class="card-text">Created date: {{ photo.created_at }}</p>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}
