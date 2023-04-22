@@ -1,0 +1,8 @@
+.photo-detail {
+    display: flex;
+    justify-content: center;
+}
+.card_detail_custom{
+    height: 800px;
+    width: 800px;
+}

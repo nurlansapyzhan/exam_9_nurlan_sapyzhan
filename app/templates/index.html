@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}
+    Index page
+{% endblock %}
+{% block menu %}
+    <a class="nav-link" href="{% url 'add_photo' %}">Add photo</a>
+{% endblock %}
+{% block content %}
+    <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+        {% for photo in photos %}
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{{ photo.photo.url }}" class="card-img-top img-thumbnail product_image"
+                         alt="product image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ photo.description }}</h5>
+                        <p class="card-text">Author: {{ photo.author }}</p>
+                        <p class="card-text">Created date: {{ photo.created_at }}</p>
+                        <a href="{% url 'photo_detail' photo.id %}" class="btn btn-secondary">See more >>></a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <h4>No data</h4>
+        {% endfor %}
+    </div>
+{% endblock %}

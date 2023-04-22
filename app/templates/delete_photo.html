@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}
+    Confirm delete page
+{% endblock %}
+{% block content %}
+    <h1>Delete photo?</h1>
+    <div class="info_block">
+        <img src="{{ photo.photo.url }}" alt="photo">
+        <p class="info">Photo: {{ photo.description }}</p>
+        <p class="info">Photo author: {{ photo.author }}</p>
+        <form action="{% url 'delete_photo' photo.pk %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="delete_button">Yes</button>
+        </form>
+        <div class="cancel">
+            <a href="{% url 'index' %}" class="cancel_button">No</a>
+        </div>
+    </div>
+{% endblock %}

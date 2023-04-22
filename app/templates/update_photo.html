@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}
+    Update photo
+{% endblock %}
+{% block content %}
+    <form action="{% url 'update_photo' photomodel.pk %}" method="post" enctype="multipart/form-data">
+        {% include 'partial/photo_form.html' with button_text='Update' %}
+    </form>
+{% endblock %}
