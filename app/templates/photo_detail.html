@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block menu %}
     {% if photomodel.perms.change_photomodel or request.user == photomodel.author %}
-    <a class="nav-link" href="{% url 'update_photo' photomodel.pk %}">Update photo</a>
+        <a class="nav-link" href="{% url 'update_photo' photomodel.pk %}">Update photo</a>
     {% endif %}
     {% if photomodel.perms.delete_photomodel or request.user == photomodel.author %}
         <a class="nav-link" href="{% url 'delete_photo' photomodel.pk %}">Delete photo</a>
@@ -19,7 +19,7 @@
                     <p class="card-text">Created date: {{ photomodel.created_at }}</p>
                     <h5>In favorites:</h5>
                     {% for user in photomodel.favorite.all %}
-                        <p>{{ user }}</p>
+                        <p><a href="{% url 'profile' user.pk %}">{{ user }}</a></p>
                     {% endfor %}
                 </div>
             </div>
