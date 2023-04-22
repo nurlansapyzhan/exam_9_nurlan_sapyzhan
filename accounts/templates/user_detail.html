@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ photo.description }}</h5>
                     <p class="card-text">Author: <a
-                            href="{% url 'profile' user_obj.pk %}">{{ photo.author }}</a></p>
+                            href="{% url 'profile' photo.author.pk %}">{{ photo.author }}</a></p>
                     <p class="card-text">Created date: {{ photo.created_at }}</p>
                 </div>
             </div>

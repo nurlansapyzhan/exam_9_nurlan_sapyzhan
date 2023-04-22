@@ -1,0 +1,108 @@
+[
+{
+  "model": "accounts.account",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$rLAGGeVf9bfoX2vZph1Vok$lyqm8GuSPR/kk2HYLSPORxxDY+2Sw5vMKC9UMgnt9tM=",
+    "last_login": "2023-04-22T10:35:23.771Z",
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-04-22T09:25:51Z",
+    "username": "jane",
+    "groups": [
+      1
+    ],
+    "user_permissions": [],
+    "favorite_posts": [
+      4,
+      3
+    ]
+  }
+},
+{
+  "model": "accounts.account",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$0h97n0FQufVilRdCvsSdM4$RMTYNkdfJ2pbSky0Ci1ZJuQya723E1D24Py5Yolf9RI=",
+    "last_login": "2023-04-22T09:35:00.256Z",
+    "is_superuser": true,
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-04-22T09:34:47.243Z",
+    "username": "root",
+    "groups": [],
+    "user_permissions": [],
+    "favorite_posts": []
+  }
+},
+{
+  "model": "accounts.account",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$Fd60SUx2Y2gp6t9vS3KJGn$tzRciuUFZOQ/U6TJbgKKfuiRZB3EUyZg7qaScSDk2HE=",
+    "last_login": "2023-04-22T13:08:44.871Z",
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-04-22T13:08:44.572Z",
+    "username": "bob",
+    "groups": [],
+    "user_permissions": [],
+    "favorite_posts": [
+      4,
+      5,
+      6
+    ]
+  }
+},
+{
+  "model": "app.photomodel",
+  "pk": 3,
+  "fields": {
+    "photo": "photos/odnoklassniki_ikurteH.png",
+    "description": "dnokly",
+    "created_at": "2023-04-22T09:26:00.677Z",
+    "author": 2
+  }
+},
+{
+  "model": "app.photomodel",
+  "pk": 4,
+  "fields": {
+    "photo": "photos/my_world_ilvW7d5.png",
+    "description": "My world",
+    "created_at": "2023-04-22T12:33:15.526Z",
+    "author": 2
+  }
+},
+{
+  "model": "app.photomodel",
+  "pk": 5,
+  "fields": {
+    "photo": "photos/vk_logo_8G7t0rF.png",
+    "description": "Vk",
+    "created_at": "2023-04-22T13:11:42.377Z",
+    "author": 4
+  }
+},
+{
+  "model": "app.photomodel",
+  "pk": 6,
+  "fields": {
+    "photo": "photos/google_logo_4Ijei4x.png",
+    "description": "google",
+    "created_at": "2023-04-22T13:12:01.742Z",
+    "author": 4
+  }
+}
+]
